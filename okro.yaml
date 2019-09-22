@@ -1,0 +1,13 @@
+steps:
+- name: build
+  image: adoptopenjdk/openjdk8
+  script: "./gradlew install -x test -x copygwactions -x copyswagger"
+artifacts:
+- name: common
+  type: javaLib
+  packagePath: org/apache/openwhisk/openwhisk-common
+  dependsOn: ["build"]
+- name: controller
+  type: javaLib
+  packagePath: org/apache/openwhisk/openwhisk-controller
+  dependsOn: ["build"]

@@ -29,19 +29,14 @@ plugins {
     id "org.scoverage" version "3.1.5" apply false
 }
 
-
-buildScan {
-    termsOfServiceUrl = 'https://gradle.com/terms-of-service'
-    termsOfServiceAgree = 'yes'
-    publishAlwaysIf(System.getenv('CI') != null)
-}
+def buildVersion = System.getenv('BUILD_VERSION') ?: 'LOCAL-SNAPSHOT'
 
 subprojects {
     apply plugin: 'scalafmt'
     scalafmt.configFilePath = gradle.scalafmt.config
 
     group 'org.apache.openwhisk'
-    version '1.0.0-SNAPSHOT'
+    version buildVersion
 
     afterEvaluate {
         if (project.plugins.hasPlugin('application')
