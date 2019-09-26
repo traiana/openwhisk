@@ -1,7 +1,7 @@
 steps:
 - name: build
   image: adoptopenjdk/openjdk8
-  script: "./gradlew install -x test -x copygwactions -x copyswagger"
+  script: "./gradlew install -x test -x copygwactions -x copyswagger --info"
 artifacts:
 - name: common
   type: javaLib
